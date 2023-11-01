@@ -1,0 +1,9 @@
+{
+	"name": "trainingazureoct17",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6db1528d-4b3f-4c42-a429-2c670a35d053",
+		"tenantId": "8488ad8a-e51c-4938-b6c1-3b3c0b99f316"
+	}
+}

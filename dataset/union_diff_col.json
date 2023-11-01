@@ -1,0 +1,45 @@
+{
+	"name": "union_diff_col",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "emp-different column name.csv",
+				"container": "union"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empname",
+				"type": "String"
+			},
+			{
+				"name": "fname",
+				"type": "String"
+			},
+			{
+				"name": "lname",
+				"type": "String"
+			},
+			{
+				"name": "sal",
+				"type": "String"
+			},
+			{
+				"name": "dept",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

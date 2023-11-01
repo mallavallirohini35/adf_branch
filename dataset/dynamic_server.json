@@ -1,0 +1,61 @@
+{
+	"name": "dynamic_server",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "serverdynamic",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"server": {
+					"value": "@dataset().server",
+					"type": "Expression"
+				},
+				"database": {
+					"value": "@dataset().database",
+					"type": "Expression"
+				},
+				"username": {
+					"value": "@dataset().username",
+					"type": "Expression"
+				},
+				"password": {
+					"value": "@dataset().password",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"schema": {
+				"type": "String"
+			},
+			"table": {
+				"type": "String"
+			},
+			"server": {
+				"type": "String"
+			},
+			"database": {
+				"type": "String"
+			},
+			"username": {
+				"type": "String"
+			},
+			"password": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().schema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().table",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

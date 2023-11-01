@@ -1,0 +1,28 @@
+{
+	"name": "dynamic_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_parameters",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"database": {
+					"value": "@dataset().database",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"database": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "file_name1"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

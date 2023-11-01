@@ -1,0 +1,104 @@
+{
+	"name": "variables_practice3",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select *,GETDATE() as DATE_COPIED from test_2",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "dynamic_server",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema": "dbo",
+							"table": "test_2",
+							"server": "trainingoct17.database.windows.net",
+							"database": "rohini",
+							"username": "rohini",
+							"password": "Vijaya@123"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dynamictarget",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "targetcontaineroct16"
+						}
+					}
+				]
+			},
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy data1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[test_2_truncate]"
+				},
+				"linkedServiceName": {
+					"referenceName": "sql_parameters",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"database": "rohini"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-10-31T01:25:29Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

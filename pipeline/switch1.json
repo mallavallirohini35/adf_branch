@@ -1,0 +1,298 @@
+{
+	"name": "switch1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Switch1",
+				"type": "Switch",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@pipeline().parameters.country",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "INDIA",
+							"activities": [
+								{
+									"name": "india",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"sqlReaderQuery": "select * from address_common where country = 'INDIA'",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "dynamic_server",
+											"type": "DatasetReference",
+											"parameters": {
+												"schema": "dbo",
+												"table": "address_common",
+												"server": "trainingoct17.database.windows.net",
+												"database": "rohini",
+												"username": "rohini",
+												"password": "Vijaya@123"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "dynamic_server",
+											"type": "DatasetReference",
+											"parameters": {
+												"schema": "dbo",
+												"table": "in_uk_us",
+												"server": "trainingoct17.database.windows.net",
+												"database": "rohini",
+												"username": "rohini",
+												"password": "Vijaya@123"
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"value": "UK",
+							"activities": [
+								{
+									"name": "UK",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"sqlReaderQuery": "select * from address_common where country = 'UK'",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "dynamic_server",
+											"type": "DatasetReference",
+											"parameters": {
+												"schema": "dbo",
+												"table": "address_common",
+												"server": "trainingoct17.database.windows.net",
+												"database": "rohini",
+												"username": "rohini",
+												"password": "Vijaya@123"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "dynamic_server",
+											"type": "DatasetReference",
+											"parameters": {
+												"schema": "dbo",
+												"table": "in_uk_us",
+												"server": "trainingoct17.database.windows.net",
+												"database": "rohini",
+												"username": "rohini",
+												"password": "Vijaya@123"
+											}
+										}
+									]
+								}
+							]
+						},
+						{
+							"value": "USA",
+							"activities": [
+								{
+									"name": "USA",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "AzureSqlSource",
+											"sqlReaderQuery": "select * from address_common where country = 'USA'",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "dynamic_server",
+											"type": "DatasetReference",
+											"parameters": {
+												"schema": "dbo",
+												"table": "address_common",
+												"server": "trainingoct17.database.windows.net",
+												"database": "rohini",
+												"username": "rohini",
+												"password": "Vijaya@123"
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "dynamic_server",
+											"type": "DatasetReference",
+											"parameters": {
+												"schema": "dbo",
+												"table": "in_uk_us",
+												"server": "trainingoct17.database.windows.net",
+												"database": "rohini",
+												"username": "rohini",
+												"password": "Vijaya@123"
+											}
+										}
+									]
+								}
+							]
+						}
+					],
+					"defaultActivities": [
+						{
+							"name": "others",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"sqlReaderQuery": "select * from address_common where country not in ('India' ,'UK','USA')",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "dynamic_server",
+									"type": "DatasetReference",
+									"parameters": {
+										"schema": "dbo",
+										"table": "address_common",
+										"server": "trainingoct17.database.windows.net",
+										"database": "rohini",
+										"username": "rohini",
+										"password": "Vijaya@123"
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "dynamic_server",
+									"type": "DatasetReference",
+									"parameters": {
+										"schema": "dbo",
+										"table": "address_others",
+										"server": "trainingoct17.database.windows.net",
+										"database": "rohini",
+										"username": "rohini",
+										"password": "Vijaya@123"
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"country": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-31T21:33:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
